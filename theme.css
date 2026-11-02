@@ -1,0 +1,381 @@
+/*
+  Design refresh. Loaded after styles.css, so it only overrides look and feel:
+  colour tokens, surfaces, type sizes, touch targets and the phone layout.
+  Selectors use ":root[data-theme]" so they win over the per-theme rules in styles.css.
+*/
+
+:root {
+  --paper: #f3f5f1;
+  --surface: #ffffff;
+  --ink: #1c231e;
+  --muted: #667068;
+  --line: #e2e7e0;
+  --green: #1a6b4e;
+  --green-light: #e3f1e9;
+  --orange: #cf623b;
+  --orange-light: #fbebe3;
+  --blue: #3d7790;
+  --blue-light: #e5eff3;
+  --action: #1a6b4e;
+  --action-hover: #14563e;
+  --hero-from: #1a6b4e;
+  --hero-to: #2f8d6b;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 1px 2px #1a2a2010, 0 10px 28px #1a2a2010;
+}
+
+:root[data-theme="dark"] {
+  --paper: #0d131a;
+  --surface: #16202a;
+  --ink: #eaf1f5;
+  --muted: #9db0bd;
+  --line: #2a3846;
+  --green: #5fcfa6;
+  --green-light: #1d3a33;
+  --orange: #ff9f78;
+  --orange-light: #402f29;
+  --blue: #86c6dd;
+  --blue-light: #213644;
+  --action: #278a6b;
+  --action-hover: #31a07e;
+  --hero-from: #1d5a47;
+  --hero-to: #2b7a60;
+  --shadow: 0 1px 2px #0006, 0 10px 28px #00000040;
+}
+
+/* Shell */
+:root[data-theme] body { background: var(--paper); color: var(--ink); }
+:root[data-theme] .sidebar { background: var(--surface); border-color: var(--line); }
+:root[data-theme] .nav-label,
+:root[data-theme] .section-kicker,
+:root[data-theme] .table-head,
+:root[data-theme] .sidebar-bottom > span { color: var(--muted); }
+:root[data-theme] .nav-link { min-height: 46px; border-radius: var(--radius-sm); color: var(--muted); font-size: 14px; }
+:root[data-theme] .nav-link:hover { background: var(--paper); color: var(--ink); }
+:root[data-theme] .nav-link.active { background: var(--green-light); color: var(--green); }
+:root[data-theme] .nav-count { color: var(--muted); font-size: 12px; }
+:root[data-theme] .topbar { border-color: var(--line); }
+:root[data-theme] .breadcrumb,
+:root[data-theme] .sync-indicator { color: var(--muted); font-size: 13px; }
+:root[data-theme] .breadcrumb strong { color: var(--ink); }
+:root[data-theme] .theme-toggle { width: 36px; height: 36px; border-color: var(--line); background: var(--surface); color: var(--ink); }
+:root[data-theme] .theme-toggle:hover { border-color: var(--green); color: var(--green); }
+:root[data-theme] .avatar { width: 36px; height: 36px; border-color: var(--line); background: var(--green-light); color: var(--green); }
+
+/* Headings */
+:root[data-theme] .eyebrow { color: var(--muted); font-size: 11px; }
+:root[data-theme] h1 { font-size: 42px; }
+:root[data-theme] .page-subtitle { color: var(--muted); font-size: 14px; }
+:root[data-theme] h2 { font-size: 24px; }
+:root[data-theme] .section-kicker { font-size: 11px; }
+:root[data-theme] .period-label,
+:root[data-theme] .period-range-label,
+:root[data-theme] .custom-period > span { color: var(--muted); font-size: 12px; }
+:root[data-theme] .period-controls select,
+:root[data-theme] .custom-period input { min-height: 40px; border-color: var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); font-size: 13px; }
+
+/* Cards */
+:root[data-theme] .summary-card,
+:root[data-theme] .accounts-overview,
+:root[data-theme] .activity-panel { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+:root[data-theme] .summary-card { min-height: 136px; padding: 20px 22px; }
+:root[data-theme] .summary-topline { color: var(--muted); font-size: 13px; }
+:root[data-theme] .summary-symbol { width: 30px; height: 30px; font-size: 15px; }
+:root[data-theme] .summary-value { margin-top: 14px; font-size: 30px; font-weight: 700; letter-spacing: -.01em; }
+:root[data-theme] .summary-footnote { color: var(--muted); font-size: 12px; }
+:root[data-theme] .income-card .summary-value { color: var(--green); }
+:root[data-theme] .expense-card .summary-value { color: var(--orange); }
+:root[data-theme] .balance-card { border-color: transparent; background: linear-gradient(135deg, var(--hero-from), var(--hero-to)); }
+:root[data-theme] .balance-card .summary-topline,
+:root[data-theme] .balance-card .summary-footnote { color: #ffffffd0; }
+:root[data-theme] .balance-card .summary-value { color: #fff; }
+:root[data-theme] .balance-card .balance-symbol { background: #ffffff2e; color: #fff; }
+:root[data-theme] .balance-card .balance-dot { background: #fff; }
+
+/* Accounts overview */
+:root[data-theme] .accounts-overview-header { border-color: var(--line); }
+:root[data-theme] .manage-accounts-overview { min-height: 40px; border-color: var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--green); font-size: 12px; }
+:root[data-theme] .manage-accounts-overview:hover { background: var(--green-light); }
+:root[data-theme] .overview-account-group { border-color: var(--line); border-radius: 12px; background: var(--surface); box-shadow: none; }
+:root[data-theme] .overview-group-heading { border-color: var(--line); background: var(--paper); border-radius: 12px 12px 0 0; }
+:root[data-theme] .overview-group-heading h3 { font-size: 14px; }
+:root[data-theme] .overview-group-total { color: var(--muted); font-size: 12px; }
+:root[data-theme] .overview-group-icon { background: var(--blue-light); }
+:root[data-theme] .overview-account-row { min-height: 46px; border-color: var(--line); font-size: 13px; }
+:root[data-theme] .overview-empty { color: var(--muted); font-size: 12px; }
+
+/* Activity list */
+:root[data-theme] .activity-view-switch { border-radius: 12px; background: var(--paper); }
+:root[data-theme] .activity-view-option { min-height: 32px; padding: 0 12px; border-radius: 9px; color: var(--muted); font-size: 12px; }
+:root[data-theme] .activity-view-option.active { background: var(--surface); color: var(--green); box-shadow: 0 1px 3px #00000022; }
+:root[data-theme] .search-box { height: 40px; border-color: var(--line); border-radius: var(--radius-sm); background: var(--paper); color: var(--muted); }
+:root[data-theme] .search-box input { color: var(--ink); font-size: 13px; }
+:root[data-theme] .search-box input::placeholder { color: var(--muted); }
+:root[data-theme] kbd { border-color: var(--line); color: var(--muted); }
+:root[data-theme] .table-head { border-color: var(--line); font-size: 10px; }
+:root[data-theme] .transaction-row { min-height: 66px; border-color: var(--line); }
+:root[data-theme] .transaction-row:hover { background: var(--paper); }
+:root[data-theme] .transaction-icon { flex-basis: 38px; width: 38px; height: 38px; border-radius: 12px; font-size: 16px; }
+:root[data-theme] .transaction-description { color: var(--ink); font-size: 14px; }
+:root[data-theme] .transaction-account { color: var(--muted); font-size: 12px; }
+:root[data-theme] .transaction-category,
+:root[data-theme] .transaction-date { color: var(--muted); font-size: 12px; }
+:root[data-theme] .transaction-time { color: var(--muted); font-size: 11px; }
+:root[data-theme] .transaction-amount { color: var(--ink); font-size: 14px; font-weight: 700; }
+:root[data-theme] .transaction-amount.positive { color: var(--green); }
+:root[data-theme] .edit-button,
+:root[data-theme] .duplicate-button,
+:root[data-theme] .delete-button { width: 30px; height: 30px; color: var(--muted); }
+:root[data-theme] .empty-illustration { border-color: var(--line); background: var(--green-light); }
+:root[data-theme] .empty-state p { color: var(--muted); font-size: 13px; }
+:root[data-theme] .show-more-button { width: 100%; margin: 14px 0 6px; background: var(--green-light); color: var(--green); }
+
+/* Pie charts */
+:root[data-theme] .category-chart-heading { color: var(--muted); font-size: 12px; }
+:root[data-theme] .category-pie-total { background: var(--surface); }
+:root[data-theme] .category-pie-total strong { font-size: 18px; }
+:root[data-theme] .category-pie-total span { color: var(--muted); font-size: 11px; }
+:root[data-theme] .category-legend-row { min-height: 48px; border-color: var(--line); }
+:root[data-theme] .category-legend-row.selected { border-radius: 8px; background: var(--green-light); }
+:root[data-theme] .category-legend-swatch { flex-basis: 11px; width: 11px; height: 11px; }
+:root[data-theme] .category-legend-label { color: var(--ink); font-size: 13px; }
+:root[data-theme] .category-legend-values strong { color: var(--ink); font-size: 13px; }
+:root[data-theme] .category-legend-values span { color: var(--muted); font-size: 11px; }
+:root[data-theme] .chart-empty { color: var(--muted); font-size: 13px; }
+
+/* Primary actions */
+:root[data-theme] .submit-button,
+:root[data-theme] .add-entry-button,
+:root[data-theme] .category-save { border-color: var(--action); background: var(--action); color: #fff; }
+:root[data-theme] .submit-button:hover,
+:root[data-theme] .add-entry-button:hover,
+:root[data-theme] .category-save:hover { background: var(--action-hover); }
+:root[data-theme] .submit-button { height: 50px; border-radius: 12px; font-size: 15px; }
+:root[data-theme] .add-entry-button { min-height: 44px; border-radius: 12px; font-size: 14px; }
+:root[data-theme] .entry-fab { background: var(--action); color: #fff; box-shadow: 0 8px 22px #00000050; }
+:root[data-theme] .show-more-button { background: var(--green-light); color: var(--green); }
+
+/* Entry form */
+:root[data-theme] .entry-panel { background: var(--surface); border-color: var(--line); }
+:root[data-theme] .entry-heading h2 { font-size: 24px; }
+:root[data-theme] .type-switch { border-radius: 12px; background: var(--paper); }
+:root[data-theme] .type-option { min-height: 40px; border-radius: 9px; color: var(--muted); font-size: 13px; }
+:root[data-theme] .type-option.active { background: var(--surface); color: var(--green); box-shadow: 0 1px 3px #00000022; }
+:root[data-theme] .form-field label,
+:root[data-theme] .amount-field > label { color: var(--muted); font-size: 12px; }
+:root[data-theme] .form-field input,
+:root[data-theme] .form-field select { height: 46px; border-color: var(--line); border-radius: 12px; background: var(--paper); color: var(--ink); font-size: 14px; }
+:root[data-theme] .form-field input:focus,
+:root[data-theme] .form-field select:focus,
+:root[data-theme] .amount-input-wrap:focus-within { border-color: var(--green); box-shadow: 0 0 0 3px var(--green-light); }
+:root[data-theme] .amount-input-wrap { height: 58px; border-color: var(--line); border-radius: 14px; background: var(--paper); color: var(--muted); }
+:root[data-theme] .amount-input-wrap input { color: var(--ink); font-size: 28px; }
+:root[data-theme] .amount-input-wrap input::placeholder { color: var(--muted); opacity: .6; }
+:root[data-theme] .date-field input { color: var(--ink); }
+:root[data-theme] .manage-categories-button { color: var(--green); font-size: 12px; }
+:root[data-theme] .cancel-transaction-edit { min-height: 44px; border-color: var(--line); border-radius: 12px; background: var(--surface); color: var(--muted); font-size: 13px; }
+:root[data-theme] .form-feedback { font-size: 12px; }
+:root[data-theme] .entry-close { color: var(--ink); }
+
+/* Manage categories / accounts / settings */
+:root[data-theme] .category-dialog { border-color: var(--line); background: var(--surface); color: var(--ink); }
+:root[data-theme] .category-dialog-header { border-color: var(--line); }
+:root[data-theme] .category-dialog-header h2 { font-size: 26px; }
+:root[data-theme] .dialog-close { width: 38px; height: 38px; border-color: var(--line); background: var(--paper); color: var(--ink); }
+:root[data-theme] .manager-type-label,
+:root[data-theme] .category-editor label { color: var(--muted); font-size: 12px; }
+:root[data-theme] .manager-type,
+:root[data-theme] .category-editor input,
+:root[data-theme] .category-editor select { min-height: 44px; border-color: var(--line); border-radius: 12px; background: var(--paper); color: var(--ink); font-size: 14px; }
+:root[data-theme] .category-editor { border-color: var(--line); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); }
+:root[data-theme] .category-editor h3 { font-size: 20px; }
+:root[data-theme] .category-save,
+:root[data-theme] .category-cancel { min-height: 42px; border-radius: 12px; font-size: 13px; }
+:root[data-theme] .category-cancel { border-color: var(--line); background: var(--paper); color: var(--ink); }
+:root[data-theme] .category-icon-hint,
+:root[data-theme] .category-feedback { color: var(--muted); font-size: 12px; }
+:root[data-theme] .reset-defaults-button { min-height: 42px; border-color: var(--line); border-radius: 12px; background: var(--surface); color: var(--orange); font-size: 12px; }
+:root[data-theme] .category-tree { border-color: var(--line); }
+:root[data-theme] .category-tree-row { min-height: 52px; border-color: var(--line); }
+:root[data-theme] .category-tree-name { font-size: 14px; }
+:root[data-theme] .category-tree-actions button { min-height: 34px; padding: 0 9px; border-radius: 8px; font-size: 12px; }
+:root[data-theme] .account-group-section { border-color: var(--line); border-radius: 12px; overflow: hidden; }
+:root[data-theme] .account-group-heading { border-color: var(--line); background: var(--paper); }
+:root[data-theme] .account-group-heading h3 { font-size: 14px; }
+:root[data-theme] .account-item-row { min-height: 48px; border-color: var(--line); color: var(--ink); font-size: 14px; }
+:root[data-theme] .drag-handle { width: 40px; height: 40px; color: var(--muted); }
+:root[data-theme] .dragging { background: var(--surface); }
+:root[data-theme] .settings-action { min-height: 64px; border-color: var(--line); border-radius: 14px; background: var(--surface); }
+:root[data-theme] .settings-action:hover { background: var(--paper); }
+:root[data-theme] .settings-action strong { font-size: 14px; }
+:root[data-theme] .settings-action small { color: var(--muted); font-size: 12px; }
+:root[data-theme] .settings-data-section { border-color: var(--line); border-radius: 14px; background: var(--paper); }
+:root[data-theme] .settings-data-button { min-height: 44px; border-color: var(--line); border-radius: 12px; background: var(--surface); color: var(--ink); font-size: 13px; }
+:root[data-theme] .settings-data-button:hover { background: var(--green-light); }
+:root[data-theme] .settings-data-hint,
+:root[data-theme] .settings-feedback { color: var(--muted); font-size: 12px; }
+:root[data-theme] .settings-reset-row { border-radius: 14px; }
+:root[data-theme] .settings-reset-button { min-height: 40px; border-radius: 10px; font-size: 12px; }
+:root[data-theme] .page-footer { color: var(--muted); font-size: 11px; }
+
+.period-nav { display: inline-flex; align-items: center; gap: 8px; }
+.period-step { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(128,128,128,.4); background: transparent; color: inherit; font-size: 22px; line-height: 1; cursor: pointer; }
+.period-step[hidden] { display: none; }
+.group-toggle { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 8px 4px; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.group-toggle h3 { margin: 0; font-size: 17px; flex: 1; min-width: 0; }
+.group-count { font-size: 13px; opacity: .65; white-space: nowrap; }
+.overview-account-row[role="button"] { cursor: pointer; }
+.overview-account-row[role="button"]:hover, .overview-account-row[role="button"]:focus-visible { background: rgba(128,128,128,.12); border-radius: 10px; outline: none; }
+.account-activity-summary { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 4px; font-size: 15px; }
+.account-activity-summary strong { font-size: 24px; }
+.account-activity-filters { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 8px; }
+.activity-filter { flex: none; min-height: 40px; padding: 0 14px; border: 1px solid rgba(128,128,128,.4); border-radius: 999px; background: transparent; color: inherit; font: inherit; font-size: 14px; cursor: pointer; }
+.activity-filter.active { background: var(--action); border-color: var(--action); color: #fff; }
+.activity-row { display: flex; align-items: center; gap: 12px; padding: 12px 4px; border-bottom: 1px solid rgba(128,128,128,.25); }
+.activity-details { flex: 1; min-width: 0; }
+.activity-details .transaction-description, .activity-details .transaction-account { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.activity-amount { font-weight: 700; white-space: nowrap; font-size: 16px; }
+.activity-amount.out { color: #c4573a; }
+.activity-amount.in { color: #1a8a5f; }
+.activity-amount-box { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.activity-actions { display: flex; gap: 4px; }
+.activity-action { min-height: 32px; padding: 0 10px; border: 1px solid rgba(128,128,128,.35); border-radius: 8px; background: transparent; color: inherit; font: inherit; font-size: 12px; cursor: pointer; }
+.activity-action:last-child { color: #c4573a; }
+.account-activity-add { display: flex; gap: 8px; flex-wrap: wrap; padding-bottom: 10px; }
+.workspace-grid.overlay-only { display: block; margin: 0; }
+.workspace-grid.overlay-only .activity-panel { display: none; }
+.period-jump { display: inline-flex; gap: 8px; flex-wrap: wrap; }
+.period-jump select, .period-jump input { min-height: 40px; }
+.period-jump [hidden], .period-range-label[hidden] { display: none; }
+
+/* Touch screens have no hover, so keep the row actions visible. */
+@media (hover: none) {
+  :root[data-theme] .transaction-row .transaction-amount { display: block; }
+  :root[data-theme] .edit-button,
+  :root[data-theme] .duplicate-button,
+  :root[data-theme] .delete-button { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--paper); }
+  :root[data-theme] .row-actions { flex-wrap: wrap; gap: 6px; }
+  :root[data-theme] .row-actions .transaction-amount { flex-basis: 100%; }
+}
+
+@media (max-width: 860px) {
+  :root[data-theme] h1 { font-size: 36px; }
+}
+
+/* Phone layout */
+@media (max-width: 620px) {
+  :root[data-theme] { overflow-x: hidden; }
+  :root[data-theme] body { min-width: 0; }
+  :root[data-theme] body { overflow-x: hidden; padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+  :root[data-theme] .sidebar { padding: calc(12px + env(safe-area-inset-top, 0px)) 16px 0; border: 0; background: var(--paper); }
+  :root[data-theme] .brand { margin-bottom: 4px; }
+
+  /* Bottom tab bar */
+  :root[data-theme] .primary-nav { position: fixed; right: 0; bottom: 0; left: 0; z-index: 40; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; padding: 6px 6px calc(6px + env(safe-area-inset-bottom, 0px)); overflow: visible; border-top: 1px solid var(--line); background: var(--surface); box-shadow: 0 -8px 24px #00000014; }
+  :root[data-theme] .nav-link { flex-direction: column; justify-content: center; gap: 3px; min-height: 56px; padding: 4px 2px; background: transparent; font-size: 11px; text-align: center; }
+  :root[data-theme] .nav-link.active { background: var(--green-light); }
+  :root[data-theme] .nav-icon { width: 28px; height: 28px; font-size: 16px; }
+  :root[data-theme] .entry-fab { bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
+
+  :root[data-theme] .main-content { min-width: 0; padding: 0 16px 16px; }
+  :root[data-theme] .topbar { height: 52px; gap: 8px; }
+  :root[data-theme] .breadcrumb { min-width: 0; font-size: 13px; }
+  :root[data-theme] .sync-indicator { display: none; }
+  :root[data-theme] .page-heading { padding: 20px 0 16px; }
+  :root[data-theme] h1 { font-size: 34px; }
+  :root[data-theme] .page-subtitle { max-width: none; font-size: 13px; }
+  :root[data-theme] .period-controls select { min-height: 40px; font-size: 13px; }
+  :root[data-theme] .period-range-label { font-size: 12px; }
+  :root[data-theme] .custom-period input { font-size: 12px; }
+
+  /* Net worth on its own row, income and expenses side by side */
+  :root[data-theme] .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  :root[data-theme] .balance-card { grid-column: 1 / -1; }
+  :root[data-theme] .summary-card { min-height: 112px; padding: 16px; }
+  :root[data-theme] .summary-topline { font-size: 12px; }
+  :root[data-theme] .summary-value { margin-top: 10px; font-size: 24px; }
+  :root[data-theme] .balance-card .summary-value { font-size: 30px; }
+  :root[data-theme] .summary-footnote { margin-top: 6px; font-size: 11px; }
+  :root[data-theme] .summary-symbol { width: 26px; height: 26px; font-size: 13px; }
+
+  :root[data-theme] .accounts-overview { padding: 16px 14px 12px; }
+  :root[data-theme] .accounts-overview-header h2 { font-size: 22px; }
+  :root[data-theme] .activity-panel { padding: 16px 14px 10px; }
+  :root[data-theme] .activity-tools { flex-wrap: wrap; }
+  :root[data-theme] .search-box { flex: 1 1 140px; width: auto; }
+  :root[data-theme] .activity-view-option { min-height: 34px; font-size: 12px; }
+
+  /* Transaction cards: details left, amount and actions right, category underneath */
+  :root[data-theme] .table-head { display: none; }
+  :root[data-theme] .transaction-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "main actions" "category actions"; gap: 2px 10px; min-height: 0; padding: 12px 0; }
+  :root[data-theme] .transaction-row .transaction-main { grid-area: main; }
+  :root[data-theme] .transaction-row .transaction-category { grid-area: category; padding-left: 48px; }
+  :root[data-theme] .transaction-row .row-actions { grid-area: actions; flex-direction: row; align-items: center; justify-content: flex-end; }
+  :root[data-theme] .transaction-description { font-size: 14px; }
+  :root[data-theme] .transaction-account,
+  :root[data-theme] .transaction-category { font-size: 12px; }
+  :root[data-theme] .transaction-amount { font-size: 15px; }
+  :root[data-theme] .transaction-icon { flex-basis: 38px; width: 38px; height: 38px; }
+
+  :root[data-theme] .category-chart-layout { padding: 14px 6px; }
+  :root[data-theme] .category-pie { width: 200px; }
+  :root[data-theme] .page-footer { padding-bottom: 8px; font-size: 11px; }
+}
+
+/* Vibrant palette: violet-indigo accent, teal income, coral expense */
+:root {
+  --paper: #f4f2fb;
+  --line: #e6e1f4;
+  --muted: #6d6a85;
+  --ink: #1d1a33;
+  --accent: #6c4cf1;
+  --accent-light: #ece8ff;
+  --green: #0f9d7a;
+  --green-light: #dcf7ee;
+  --orange: #f0576a;
+  --orange-light: #ffe6ea;
+  --blue-light: #e4ecff;
+  --action: #6c4cf1;
+  --action-hover: #5a3bd8;
+  --hero-from: #6c4cf1;
+  --hero-to: #d452b8;
+  --shadow: 0 1px 2px #3b2a8a10, 0 12px 30px #3b2a8a18;
+}
+:root[data-theme="dark"] {
+  --paper: #0f0c1f;
+  --surface: #1a1630;
+  --ink: #f1eeff;
+  --muted: #a9a3c7;
+  --line: #2f2850;
+  --accent: #a692ff;
+  --accent-light: #2b2457;
+  --green: #4be3b8;
+  --green-light: #12342f;
+  --orange: #ff8296;
+  --orange-light: #40212b;
+  --blue: #8fb4ff;
+  --blue-light: #1f2a55;
+  --action: #7a5cff;
+  --action-hover: #8f76ff;
+  --hero-from: #5b3fe0;
+  --hero-to: #b0408f;
+  --shadow: 0 1px 2px #0007, 0 12px 30px #00000055;
+}
+:root[data-theme] body { background: radial-gradient(900px 500px at 100% -10%, var(--accent-light), transparent 60%), var(--paper); background-attachment: fixed; }
+:root[data-theme] .nav-link.active,
+:root[data-theme] .avatar,
+:root[data-theme] .activity-view-option.active,
+:root[data-theme] .manage-accounts-overview,
+:root[data-theme] .show-more-button { color: var(--accent); }
+:root[data-theme] .nav-link.active,
+:root[data-theme] .avatar,
+:root[data-theme] .show-more-button,
+:root[data-theme] .manage-accounts-overview:hover { background: var(--accent-light); }
+:root[data-theme] .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+:root[data-theme] .balance-card { background: linear-gradient(135deg, var(--hero-from), var(--hero-to)); box-shadow: 0 14px 32px #6c4cf148; }
+:root[data-theme] .income-card { border-top: 3px solid var(--green); }
+:root[data-theme] .expense-card { border-top: 3px solid var(--orange); }
+:root[data-theme] .overview-group-heading { background: linear-gradient(90deg, var(--accent-light), var(--surface)); }
+:root[data-theme] .category-legend-row.selected { background: var(--accent-light); }
+:root[data-theme] .empty-illustration { background: var(--accent-light); }

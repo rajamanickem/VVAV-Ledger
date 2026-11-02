@@ -1,0 +1,6 @@
+{
+  "appId": "com.ledger.moneymanager",
+  "appName": "VVAV Ledger",
+  "webDir": "www",
+  "androidScheme": "https"
+}
