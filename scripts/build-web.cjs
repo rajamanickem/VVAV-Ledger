@@ -16,6 +16,7 @@ const files = [
   "helpers.js",
   "render.js",
   "account-activity.js",
+  "budget.js",
   "events.js",
   "pwa.js",
   "service-worker.js",

@@ -29,7 +29,7 @@ jobs:
       - name: Prepare website files
         run: |
           mkdir -p _site/icons
-          cp index.html styles.css theme.css constants.js state.js storage.js backup.js helpers.js render.js account-activity.js events.js account-manager.js category-manager.js pwa.js service-worker.js manifest.webmanifest _site/
+          cp index.html styles.css theme.css constants.js state.js storage.js backup.js helpers.js render.js account-activity.js budget.js events.js account-manager.js category-manager.js pwa.js service-worker.js manifest.webmanifest _site/
           cp icons/ledger.svg _site/icons/
       - name: Upload website artifact
         uses: actions/upload-pages-artifact@v3
