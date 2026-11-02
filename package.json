@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node scripts/build-web.cjs",
     "android:add": "npm run build && cap add android",
-    "android:sync": "npm run build && cap sync android",
+    "android:sync": "npm run build && cap sync android && node scripts/apply-android-icons.cjs",
+    "android:icons": "node scripts/apply-android-icons.cjs",
     "android:open": "cap open android"
   },
   "dependencies": {
