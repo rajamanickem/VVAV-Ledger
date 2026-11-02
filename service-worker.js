@@ -1,4 +1,4 @@
-const CACHE_NAME = "ledger-shell-v12";
+const CACHE_NAME = "ledger-shell-v34";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -13,6 +13,7 @@ const APP_SHELL = [
   "./helpers.js",
   "./render.js",
   "./account-activity.js",
+  "./budget.js",
   "./events.js",
   "./pwa.js",
   "./service-worker.js",

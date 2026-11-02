@@ -6,7 +6,8 @@ function createFullBackup() {
     theme: document.documentElement.dataset.theme === "dark" ? "dark" : "light",
     transactions,
     categories,
-    accountGroups
+    accountGroups,
+    budget: budgetPlan
   };
 }
 

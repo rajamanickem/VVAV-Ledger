@@ -21,25 +21,32 @@ const accountManager = window.createAccountManager({
 
 function setView(view) {
   activeView = view;
+  const isBudget = view === "budget";
   const isHome = view === "home";
+  const isTransactions = !isHome && !isBudget;
   document.querySelector("#accounts-overview").classList.toggle("hidden", !isHome);
   document.querySelector(".summary-grid").classList.toggle("hidden", !isHome);
-  document.querySelector("#entry-toggle").classList.toggle("hidden", isHome);
-  if (isHome) setEntryExpanded(false);
-  document.querySelector("#transaction-workspace").classList.toggle("hidden", isHome);
+  document.querySelector("#budget-planner").classList.toggle("hidden", !isBudget);
+  document.querySelector("#entry-toggle").classList.toggle("hidden", !isTransactions);
+  if (!isTransactions) setEntryExpanded(false);
+  document.querySelector("#transaction-workspace").classList.toggle("hidden", !isTransactions);
+  document.querySelector(".page-heading").classList.toggle("hidden", isBudget);
   document.querySelectorAll("[data-view]").forEach((button) => {
-    const selected = isHome;
+    const selected = button.dataset.view === view;
     button.classList.toggle("active", selected);
     if (selected) button.setAttribute("aria-current", "page");
     else button.removeAttribute("aria-current");
   });
   document.querySelectorAll(".nav-link[data-tab]").forEach((button) => {
-    const selected = !isHome && button.dataset.tab === activeTab;
+    const selected = isTransactions && button.dataset.tab === activeTab;
     button.classList.toggle("active", selected);
     if (selected) button.setAttribute("aria-current", "page");
     else button.removeAttribute("aria-current");
   });
-  if (isHome) {
+  if (isBudget) {
+    document.querySelector("#breadcrumb-label").textContent = "Monthly plan";
+    renderBudgetPlanner();
+  } else if (isHome) {
     document.querySelector("#breadcrumb-label").textContent = "Overview";
     document.querySelector("#page-title").innerHTML = 'Overview<span class="title-period">.</span>';
     document.querySelector(".page-subtitle").textContent = "Your accounts, balances, and the bigger picture.";
@@ -299,8 +306,8 @@ function setEntryExpanded(expanded) {
     entryReturnsToActivity = false;
     const workspace = document.querySelector("#transaction-workspace");
     workspace.classList.remove("overlay-only");
-    workspace.classList.toggle("hidden", activeView === "home");
-    if (activeView === "home") setView("home");
+    workspace.classList.toggle("hidden", activeView === "home" || activeView === "budget");
+    if (activeView === "home" || activeView === "budget") setView(activeView);
     reopenAccountActivity();
   }
 }

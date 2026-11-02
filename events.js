@@ -34,16 +34,21 @@ elements.backupFileInput.addEventListener("change", async () => {
   try {
     const backup = JSON.parse(await file.text());
     validateFullBackup(backup);
-    if (!window.confirm(`Restore ${backup.transactions.length} transactions and replace all current categories and accounts? This cannot be undone.`)) return;
-    const previous = { transactions, categories, accountGroups, theme: document.documentElement.dataset.theme };
+    const hasBudget = backup.budget !== undefined;
+    const planCount = hasBudget ? normalizeBudgetPlan(backup.budget).items.length : 0;
+    if (!window.confirm(`Restore ${backup.transactions.length} transactions${hasBudget ? ` and ${planCount} monthly plans` : ""} and replace all current categories and accounts? This cannot be undone.`)) return;
+    const previous = { transactions, categories, accountGroups, budgetPlan, theme: document.documentElement.dataset.theme };
+    if (hasBudget) budgetPlan = normalizeBudgetPlan(backup.budget);
     transactions = backup.transactions.map((transaction) => ({ ...transaction, id: transaction.id || createId(), amount: Number(transaction.amount) }));
     categories = backup.categories;
     accountGroups = backup.accountGroups.map((group) => ({
       ...group,
       accounts: group.accounts.map((account) => ({ ...account, openingBalance: Number(account.openingBalance) || 0 }))
     }));
-    const saved = await persistFullBackup();
+    const saved = (await persistFullBackup()) && saveBudgetPlan();
     if (!saved) {
+      budgetPlan = previous.budgetPlan;
+      saveBudgetPlan();
       transactions = previous.transactions;
       categories = previous.categories;
       accountGroups = previous.accountGroups;
@@ -57,7 +62,8 @@ elements.backupFileInput.addEventListener("change", async () => {
     categoryManager.refreshSelects();
     updateSummary();
     renderTransactions();
-    elements.settingsFeedback.textContent = `Restored ${transactions.length} transactions and app settings.`;
+    renderBudgetPlanner();
+    elements.settingsFeedback.textContent = `Restored ${transactions.length} transactions${hasBudget ? `, ${budgetPlan.items.length} monthly plans` : ""} and app settings.`;
   } catch (error) {
     elements.settingsFeedback.textContent = error instanceof SyntaxError ? "Could not read that JSON backup file." : error.message;
   }
@@ -301,6 +307,7 @@ elements.time.value = currentTimeString();
 async function initialize() {
   await loadCategories();
   await loadAccountGroups();
+  loadBudgetPlan();
   transactions = await loadTransactions();
   updatePeriodControl();
   accountManager.refreshSelects();
